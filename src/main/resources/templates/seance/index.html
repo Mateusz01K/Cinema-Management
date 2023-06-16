@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/seanceStyle.css">
+    <title>Cinema</title>
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <div class="opction"><a href="/cinema/home">Home</a></div>
+            <div class="opction"><a href="/cinema/ticket">Ticket</a></div>
+            <div class="opction"><a href="/cinema/seance">Seance</a></div>
+            <div class="opction"><a href="">Contact</a></div>
+            <div class="opction"><a href="">Location</a></div>
+            <div style="clear: both;"></div>
+        </div>
+        <div id="left">
+            <table id="seanceTable">
+                <tr class="seanceTr">
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                </tr>
+                <tr th:text="seance : ${seance}">
+                    <td th:text="${seance.id}"></td>
+                    <td th:text="${seance.title}"></td>
+                    <td th:text="${seance.description}"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="rigth">c</div>
+        <div id="footer">d</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: chocolate;
+}
+
+body{
+    text-align: center;
+}
+
+#container{
+    size: 100%;
+}
+
+#menu{
+    font-size: 20px;
+    margin-left: 35%;
+    margin-right: 30%;
+    margin-top: 5%;
+    padding: 30px;
+    opacity: 1;
+}
+
+.opction{
+    float: left;
+    text-align: center;
+    margin-left: 5%;
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+}
+
+.opction:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#left{
+    float: left;
+    size: 100%;
+    margin-left: 35%;
+}
+
+
+
+#footer{
+    size: 100%;
+}
+
+#seanceTable{
+    text-align: center;
+    width: 90%;
+    height: 100%;
+}
+
+#seanceTr{
+    text-align: center;
+    border: solid 1px black;
+}
+
+td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: solid 0.5px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
