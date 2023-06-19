@@ -2,4 +2,4 @@
 
 #CRUD
 <br>
-Aplikacja kupowania biletów
+Aplikacja do logowania, kupowania biletów, zarządzania seanami.
