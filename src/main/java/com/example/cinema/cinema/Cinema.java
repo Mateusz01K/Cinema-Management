@@ -1,8 +1,12 @@
 package com.example.cinema.cinema;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cinema {
     private int id;
     private int name;

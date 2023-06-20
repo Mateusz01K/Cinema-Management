@@ -18,7 +18,22 @@
             <div class="opction"><a href="">Location</a></div>
             <div style="clear: both;"></div>
         </div>
-        <div id="left">b</div>
+        <div id="left">
+            <table id="seanceTable">
+                <tr class="seanceTr">
+                    <td>ID</td>
+                    <td>ID_seance</td>
+                    <td>Price</td>
+                    <td>Date</td>
+                </tr>
+                <tr th:each="ticket : ${ticket}">
+                    <td th:text="${ticket.id}"></td>
+                    <td th:text="${ticket.id_seance}"></td>
+                    <td th:text="${ticket.price}"></td>
+                    <td th:text="${ticket.date}"></td>
+                </tr>
+            </table>
+        </div>
         <div id="right">c</div>
         <div id="footer">d</div>
     </div>

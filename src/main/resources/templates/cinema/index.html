@@ -26,7 +26,7 @@
                     <td>Seances</td>
                     <td>Tickets</td>
                 </tr>
-                <tr th:text="cinema : ${cinema}">
+                <tr th:each="cinema : ${cinema}">
                     <td th:text="${cinema.id}"></td>
                     <td th:text="${cinema.name}"></td>
                     <td th:text="${cinema.seance}"></td>

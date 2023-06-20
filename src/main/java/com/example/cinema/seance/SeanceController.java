@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/seance")
@@ -13,11 +15,16 @@ public class SeanceController {
     @Autowired
     SeanceRepository seanceRepository;
 
+    @GetMapping("/getList")
+    public List<Seance> getList(){
+        return seanceRepository.getAll();
+    }
+
 
     @GetMapping("/getAll")
     public ModelAndView get(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("index");
+        mav.setViewName("seance/index");
         mav.addObject("seance", seanceRepository.getAll());
         return mav;
     }

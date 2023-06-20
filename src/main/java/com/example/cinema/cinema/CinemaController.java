@@ -48,6 +48,4 @@ public class CinemaController {
         mav.addObject("cinema", cinemaRepository.getAll());
         return mav;
     }
-
-
 }
