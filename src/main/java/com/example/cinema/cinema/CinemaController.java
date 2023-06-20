@@ -15,33 +15,13 @@ public class CinemaController {
     @Autowired
     CinemaRepository cinemaRepository;
 
-    @GetMapping("/home")
-    public ModelAndView getIndex(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("cinema/index");
-        return mav;
-    }
-
-    @GetMapping("/seance")
-    public ModelAndView getSeance(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/seance/index");
-        return mav;
-    }
-
-    @GetMapping("/ticket")
-    public ModelAndView getTicket(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/ticket/index");
-        return mav;
-    }
-
+    
     @GetMapping("/getList")
     public List<Cinema> getList(){
         return cinemaRepository.getAll();
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/home")
     public ModelAndView get(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("cinema/index");

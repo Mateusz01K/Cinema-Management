@@ -21,7 +21,7 @@ public class SeanceController {
     }
 
 
-    @GetMapping("/getAll")
+    @GetMapping("/home")
     public ModelAndView get(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("seance/index");
