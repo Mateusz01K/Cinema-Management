@@ -3,5 +3,5 @@
 #CRUD
 <br>
 Aplikacja do logowania, kupowania biletów, zarządzania seanami.
-<br>
-Dodawanie, Aktualizacja, Usuwanie danych
+<br><br>
+Dodawanie, Aktualizacja, Usuwanie danych seance
