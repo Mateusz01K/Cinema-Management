@@ -10,14 +10,6 @@
 </head>
 <body>
     <div id="container">
-        <div id="menu">
-            <div class="opction"><a href="/cinema/home">Home</a></div>
-            <div class="opction"><a href="/ticket/home">Ticket</a></div>
-            <div class="opction"><a href="/seance/home">Seance</a></div>
-            <div class="opction"><a href="">Contact</a></div>
-            <div class="opction"><a href="">Location</a></div>
-            <div style="clear: both;"></div>
-        </div>
         <div id="left">
             <table id="seanceTable">
                 <tr class="seanceTr">
@@ -35,10 +27,13 @@
             </table>
         </div>
         <div id="footer">
-            <a href="/cinema/add" id="addButton">Add</a>
-            <a href="/cinema/update" class="updateButton">Update</a>
-            <a href="/cinema/delete" class="deleteButton">Delete</a>
-            <a href="/cinema/home" class="backButton">Back</a>
+            <form class="Form" method="post" action="/cinema/delete">
+                <label>ID:</label>
+                <input class="inputForm" type="number" name="id"><br>
+                <input class="inputDelete" type="submit" value="Delete Record">
+            </form>
+            <a href="cinema/home" id="deleteButton">Add</a>
+            <a href="cinema/home" class="backButton">Back</a>
         </div>
     </div>
 </body>
