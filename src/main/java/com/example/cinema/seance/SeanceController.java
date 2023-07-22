@@ -28,23 +28,56 @@ public class SeanceController {
         return mav;
     }
 
+    @GetMapping("/home/add")
+    public ModelAndView getAdd(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("seance/add");
+        mav.addObject("seance", seanceRepository.getAll());
+        return mav;
+    }
+
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
-    public ModelAndView add(@RequestParam("title") String title, @RequestParam("description") String description){
+    public RedirectView add(@RequestParam("title") String title, @RequestParam("description") String description){
         Seance newSeance = new Seance(title, description);
         seanceRepository.save(newSeance);
-        return new ModelAndView("/seance/home");
+        return new RedirectView("/seance/home/add");
+    }
+
+    @GetMapping("/home/update")
+    public ModelAndView getUpdate(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("seance/update");
+        mav.addObject("seance", seanceRepository.getAll());
+        return mav;
     }
 
     @PostMapping("/update")
-    public RedirectView partiallyUpdate(@RequestParam("id") int id, @RequestParam("title") String title, @RequestParam("description") String description){
+    public RedirectView partiallyUpdate(@RequestParam("id") int id,
+                                        @RequestParam("title") String title,
+                                        @RequestParam("description") String description){
         Seance seanceUpdate = seanceRepository.getById(id);
         if(seanceUpdate != null){
             if(seanceUpdate.getTitle() != null) seanceUpdate.setTitle(title);
             if(seanceUpdate.getDescription() != null) seanceUpdate.setDescription(description);
             seanceRepository.update(seanceUpdate);
-            return new RedirectView("/seance/home");
+            return new RedirectView("/seance/home/update");
         }else{
-            return new RedirectView("/seance/home");
+            return new RedirectView("/seance/home/update");
         }
+    }
+
+    @GetMapping("/home/delete")
+    public ModelAndView getDelete(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("seance/delete");
+        mav.addObject("seance", seanceRepository.getAll());
+        return mav;
+    }
+
+    //W RequestParam nie możan używać MOdelAndView
+    @PostMapping("/delete/{id}")
+    public RedirectView delete(@RequestParam("id") int id){
+        seanceRepository.delete(id);
+        return new RedirectView("/seance/home/delete");
     }
 }

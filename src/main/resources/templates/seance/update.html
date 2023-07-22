@@ -26,14 +26,16 @@
     </div>
     <div id="footer">
         <form class="Form" method="post" action="/seance/partiallyUpdate/{id}">
+            <label>ID:</label>
+            <input class="inputForm" type="number" name="id"><br>
             <label>Title:</label>
             <input class="inputForm" type="text" name="title"><br>
             <label>Description:</label>
             <input class="inputForm" type="text" name="description"><br>
             <input class="inputUpdate" type="submit" value="Update Seance">
         </form>
-        <a href="seance/home" id="addButton">Add</a>
-        <a href="seance/home" class="backButton">Back</a>
+        <a href="/seance/home" id="addButton">Add</a>
+        <a href="/seance/home" class="backButton">Back</a>
     </div>
 </div>
 </body>

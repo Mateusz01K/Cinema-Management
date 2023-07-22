@@ -25,11 +25,6 @@ public class SeanceRepository {
                 BeanPropertyRowMapper.newInstance(Seance.class), id);
     }
 
-    public Seance getElementById(int id){
-        return jdbcTemplate.queryForObject("SELECT id, title, description FROM seance WHERE id=?",
-                BeanPropertyRowMapper.newInstance(Seance.class), id);
-    }
-
     public int save(Seance seance){
         return jdbcTemplate.update("INSERT INTO seance(title, description) VALUES (?,?)",
                 seance.getTitle(), seance.getDescription());
@@ -40,6 +35,10 @@ public class SeanceRepository {
                 seance.getTitle(), seance.getDescription(), seance.getId());
     }
 
+    public void delete(int id){
+        jdbcTemplate.update("DELETE FROM seance WHERE id=?", id);
+        jdbcTemplate.update("ALTER TABLE seance AUTO_INCREMENT = 1");
+    }
 
 }
 

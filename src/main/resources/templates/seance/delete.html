@@ -6,18 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Cinema</title>
+    <title>Seance</title>
 </head>
 <body>
     <div id="container">
-        <div id="menu">
-            <div class="opction"><a href="/cinema/home">Home</a></div>
-            <div class="opction"><a href="/ticket/home">Ticket</a></div>
-            <div class="opction"><a href="/seance/home">Seance</a></div>
-            <div class="opction"><a href="">Contact</a></div>
-            <div class="opction"><a href="">Location</a></div>
-            <div style="clear: both;"></div>
-        </div>
         <div id="left">
             <table id="seanceTable">
                 <tr class="seanceTr">
@@ -33,9 +25,12 @@
             </table>
         </div>
         <div id="footer">
-            <a href="/seance/home/add" id="addButton">Add</a>
-            <a href="/seance/home/update" class="updateButton">Update</a>
-            <a href="/seance/home/delete" class="deleteButton">Delete</a>
+            <form class="Form" method="post" action="/seance/delete/{id}">
+                <label>ID:</label>
+                <input class="inputForm" type="number" name="id"><br>
+                <input class="inputDelete" type="submit" value="Delete Record">
+            </form>
+            <a href="/seance/home" id="addButton">Add</a>
             <a href="/seance/home" class="backButton">Back</a>
         </div>
     </div>
