@@ -51,7 +51,7 @@ public class SeanceController {
         return mav;
     }
 
-    @PostMapping("/update")
+    @PostMapping(path = "/update", consumes = "application/x-www-form-urlencoded")
     public RedirectView partiallyUpdate(@RequestParam("id") int id,
                                         @RequestParam("title") String title,
                                         @RequestParam("description") String description){

@@ -17,4 +17,9 @@ public class TicketRepository {
         return jdbcTemplate.query("SELECT id, id_seance, price, date FROM ticket",
                 BeanPropertyRowMapper.newInstance(Ticket.class));
     }
+
+    public int buyTicket(Ticket ticket){
+        return jdbcTemplate.update("INSERT INTO task(id_seance, price, date) VALUES (?,?)",
+        ticket.getId_seance(),ticket.getPrice(), ticket.getDate());
+    }
 }
