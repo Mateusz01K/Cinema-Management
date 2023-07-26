@@ -21,6 +21,13 @@ public class CinemaController {
         return cinemaRepository.getAll();
     }
 
+    @GetMapping("/login")
+    public ModelAndView getLogin(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("cinema/login");
+        return mav;
+    }
+
     @GetMapping("/home")
     public ModelAndView get(){
         ModelAndView mav = new ModelAndView();

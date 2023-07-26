@@ -1,0 +1,4 @@
+package com.example.cinema.User;
+
+public class UserRepository {
+}
