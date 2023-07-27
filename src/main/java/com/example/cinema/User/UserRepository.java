@@ -17,7 +17,7 @@ public class UserRepository {
     }
 
     public User getUserByName(String userName){
-        return jdbcTemplate.queryForObject("SELECT id, userName, password, email, role FROM user",
+        return jdbcTemplate.queryForObject("SELECT id, userName, password, email, role FROM user WHERE userName=?",
                 BeanPropertyRowMapper.newInstance(User.class), userName);
     }
 }
