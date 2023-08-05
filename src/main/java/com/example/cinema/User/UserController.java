@@ -33,8 +33,8 @@ public class UserController {
         if(userRepository.getUserByName(userName)==null){
             model.addAttribute("error","Username already exists.");
         }
-
          */
+
         User newUser = new User(userName,password,email,"USER");
         userRepository.registerUser(newUser);
         model.addAttribute("messege", "Registration successful.");
@@ -46,10 +46,9 @@ public class UserController {
     @GetMapping("/login")
     public ModelAndView getLogin(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/cinema/home");
+        mav.setViewName("/cinema/login");
         return mav;
     }
-
      */
 
     @PostMapping("/login")
