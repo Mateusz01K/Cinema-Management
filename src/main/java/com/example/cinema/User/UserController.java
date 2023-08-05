@@ -42,12 +42,15 @@ public class UserController {
         return new RedirectView("/login");
     }
 
+    /*
     @GetMapping("/login")
     public ModelAndView getLogin(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/cinema/home");
         return mav;
     }
+
+     */
 
     @PostMapping("/login")
     public RedirectView login(@RequestParam("userName") String userName,
