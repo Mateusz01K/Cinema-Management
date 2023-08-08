@@ -1,6 +1,7 @@
 package com.example.cinema.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/registration")
@@ -29,13 +33,8 @@ public class UserController {
                                      @RequestParam("password") String password,
                                      @RequestParam("email") String email,
                                      Model model){
-        /*
-        if(userRepository.getUserByName(userName)==null){
-            model.addAttribute("error","Username already exists.");
-        }
-         */
-
-        User newUser = new User(userName,password,email,"USER");
+        String hashedPassword = passwordEncoder.encode(password);
+        User newUser = new User(userName,hashedPassword,email,"USER");
         userRepository.registerUser(newUser);
         model.addAttribute("messege", "Registration successful.");
 
@@ -56,8 +55,9 @@ public class UserController {
                               @RequestParam("password") String password,
                               Model model){
         User user = userRepository.getUserByName(userName);
-        if(user==null || !user.getPassword().equals(password)){
+        if(user==null || !passwordEncoder.matches(password, user.getPassword())){
             model.addAttribute("error","Invalid username or password.");
+            return new RedirectView("/cinema/home");
         }
         return new RedirectView("/cinema/home");
     }
