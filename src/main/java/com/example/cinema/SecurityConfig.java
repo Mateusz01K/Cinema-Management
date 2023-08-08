@@ -36,20 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        /*
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin);
-         */
         return username -> {
             com.example.cinema.User.User user = userRepository.getUserByName(username);
             if(user==null){
@@ -72,10 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/cinema/home", "/seance/home", "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
+                .antMatchers("/cinema/home", "/ticket/home", "/seance/home", "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
                 .anyRequest().hasRole("ADMIN")
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .defaultSuccessUrl("/cinema/home")
                 .and()
                 .logout()
