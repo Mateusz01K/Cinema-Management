@@ -49,14 +49,14 @@ public class UserController {
         return mav;
     }
 
-    @PostMapping("/login")
-    public RedirectView login(@RequestParam("userName") String userName,
+    @PostMapping("/customLogin")
+    public RedirectView customLogin(@RequestParam("userName") String userName,
                               @RequestParam("password") String password,
                               Model model){
         User user = userRepository.getUserByName(userName);
         if(user==null || !passwordEncoder.matches(password, user.getPassword())){
             model.addAttribute("error","Invalid username or password.");
-            return new RedirectView("/cinema/home");
+            return new RedirectView("/customLogin");
         }
         return new RedirectView("/cinema/home");
     }

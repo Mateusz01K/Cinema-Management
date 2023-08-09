@@ -58,11 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/cinema/home", "/ticket/home", "/seance/home", "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
+                .antMatchers("/css/**","/resources/**","/cinema/home", "/ticket/home", "/seance/home", "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
                 .anyRequest().hasRole("ADMIN")
+                //.antMatchers("/ticket/home/buy_ticket").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login")
                 .defaultSuccessUrl("/cinema/home")
                 .and()
                 .logout()
