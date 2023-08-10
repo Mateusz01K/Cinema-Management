@@ -1,6 +1,9 @@
 package com.example.cinema.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +60,11 @@ public class UserController {
         if(user==null || !passwordEncoder.matches(password, user.getPassword())){
             model.addAttribute("error","Invalid username or password.");
             return new RedirectView("/customLogin");
+        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String role = authentication.getAuthorities().iterator().next().getAuthority();
+        if(role.equals("ADMIN")){
+            return new RedirectView("/cinema/home");
         }
         return new RedirectView("/cinema/home");
     }

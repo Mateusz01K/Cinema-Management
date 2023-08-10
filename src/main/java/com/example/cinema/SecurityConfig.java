@@ -4,6 +4,7 @@ import com.example.cinema.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -58,14 +59,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**","/resources/**","/cinema/home", "/ticket/home", "/seance/home", "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
-                .anyRequest().hasRole("ADMIN")
-                //.antMatchers("/ticket/home/buy_ticket").hasRole("ADMIN")
+                .antMatchers("/css/**","/resources/**",
+                        "/cinema/home", "/ticket/home", "/seance/home",
+                        "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
+                //.anyRequest().hasRole("ADMIN")
+                //.antMatchers("/ticket/home","/seance/home","/cinema/home").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/ticket/*","/seance/*","/cinema/*").hasRole("ADMIN")
                 .and()
-                .formLogin()
+                .formLogin().permitAll()
                 .defaultSuccessUrl("/cinema/home")
                 .and()
-                .logout()
+                .logout().permitAll()
                 .logoutSuccessUrl("/cinema/home")
                 .and()
                 .csrf().disable(); // Wyłączamy zabezpieczenie CSRF w celu prostszego testowania
