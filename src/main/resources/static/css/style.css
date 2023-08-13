@@ -13,6 +13,28 @@ body{
     size: 100%;
 }
 
+#user-actions{
+    position:absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#user-actions a{
+    margin: 10px;
+    padding: 10px;
+}
+
+#logout-button{
+    display: inline-block;
+    size: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#registration-login{
+    display: inline-block;
+}
+
 #menu{
     font-size: 20px;
     margin-left: 35%;

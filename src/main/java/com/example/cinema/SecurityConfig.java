@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/ticket/*","/seance/*","/cinema/*").hasRole("ADMIN")
                 .and()
                 .formLogin().permitAll()
+                .loginPage("/login")
                 .defaultSuccessUrl("/cinema/home")
                 .and()
                 .logout().permitAll()

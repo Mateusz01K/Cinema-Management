@@ -58,12 +58,11 @@ public class UserController {
                               Model model){
         User user = userRepository.getUserByName(userName);
         if(user==null || !passwordEncoder.matches(password, user.getPassword())){
-            model.addAttribute("error","Invalid username or password.");
+            model.addAttribute("error","ERROR");
             return new RedirectView("/customLogin");
         }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String role = authentication.getAuthorities().iterator().next().getAuthority();
-        if(role.equals("ADMIN")){
+        String role = user.getRole();
+        if("ADMIN".equals(role)){
             return new RedirectView("/cinema/home");
         }
         return new RedirectView("/cinema/home");

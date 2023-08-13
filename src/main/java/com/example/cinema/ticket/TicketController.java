@@ -2,6 +2,7 @@ package com.example.cinema.ticket;
 
 import com.example.cinema.seance.Seance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -36,6 +37,7 @@ public class TicketController {
         return mav;
     }
 
+    @PreAuthorize("hasRole('ADMIN)")
     @PostMapping(path = "/buyTicket", consumes = "application/x-www-form-urlencoded")
     public RedirectView buyTicket(@RequestParam("id_seance") int id_seance,@RequestParam("price") float price, @RequestParam("date") String date){
         Ticket newTicket = new Ticket(id_seance,price, date);

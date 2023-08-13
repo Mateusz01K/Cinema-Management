@@ -1,6 +1,7 @@
 package com.example.cinema.seance;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -36,6 +37,7 @@ public class SeanceController {
         return mav;
     }
 
+    @PreAuthorize("hasRole('ADMIN)")
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public RedirectView add(@RequestParam("title") String title, @RequestParam("description") String description){
         Seance newSeance = new Seance(title, description);
@@ -51,6 +53,7 @@ public class SeanceController {
         return mav;
     }
 
+    @PreAuthorize("hasRole('ADMIN)")
     @PostMapping(path = "/update", consumes = "application/x-www-form-urlencoded")
     public RedirectView partiallyUpdate(@RequestParam("id") int id,
                                         @RequestParam("title") String title,
@@ -75,6 +78,7 @@ public class SeanceController {
     }
 
     //W RequestParam nie możan używać MOdelAndView
+    @PreAuthorize("hasRole('ADMIN)")
     @PostMapping("/delete/{id}")
     public RedirectView delete(@RequestParam("id") int id){
         seanceRepository.delete(id);
