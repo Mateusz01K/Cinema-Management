@@ -54,15 +54,15 @@ public class UserController {
 
     @PostMapping("/customLogin")
     public RedirectView customLogin(@RequestParam("userName") String userName,
-                              @RequestParam("password") String password,
-                              Model model){
+                                    @RequestParam("password") String password,
+                                    Model model){
         User user = userRepository.getUserByName(userName);
+        String role = user.getRole();
         if(user==null || !passwordEncoder.matches(password, user.getPassword())){
             model.addAttribute("error","ERROR");
             return new RedirectView("/customLogin");
         }
-        String role = user.getRole();
-        if("ADMIN".equals(role)){
+        else if("ADMIN".equals(role)){
             return new RedirectView("/cinema/home");
         }
         return new RedirectView("/cinema/home");

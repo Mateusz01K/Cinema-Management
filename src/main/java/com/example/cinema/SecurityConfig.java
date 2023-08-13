@@ -48,6 +48,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /*
+    @Override
+    public UserDetails loadUserByUserName(String userName) throws UsernameNotFoundException{
+
+        com.example.cinema.User.User user = userRepository.getUserByName(userName);
+        if(userRepository.getUserByName()==null){
+            throw new UsernameNotFoundException("User not authorized.");
+        }
+        GrantedAuthority authority = new SimpleGrantedAuthority()
+
+    }
+
+     */
+
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
         authenticationManagerBuilder
@@ -59,18 +73,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/css/**","/resources/**",
-                        "/cinema/home", "/ticket/home", "/seance/home",
-                        "/registration").permitAll() // Dostęp do strony głównej i rejestracji dla wszystkich
+                .antMatchers("/css/**","/resources/**", "/cinema/home", "/ticket/home",
+                        "/seance/home", "/registration").permitAll()
                 //.anyRequest().hasRole("ADMIN")
                 //.antMatchers("/ticket/home","/seance/home","/cinema/home").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/ticket/*","/seance/*","/cinema/*").hasRole("ADMIN")
+                .antMatchers("/ticket/*","/seance/*/*","/cinema/*").hasAuthority("ADMIN")
+                //.antMatchers("/seance/add").hasAuthority("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login")
+                .loginProcessingUrl("/customLogin")
+                .usernameParameter("userName")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/cinema/home")
                 .and()
-                .logout().permitAll()
+                .logout()
                 .logoutSuccessUrl("/cinema/home")
                 .and()
                 .csrf().disable(); // Wyłączamy zabezpieczenie CSRF w celu prostszego testowania
