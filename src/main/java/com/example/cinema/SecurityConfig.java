@@ -48,20 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-    /*
-    @Override
-    public UserDetails loadUserByUserName(String userName) throws UsernameNotFoundException{
-
-        com.example.cinema.User.User user = userRepository.getUserByName(userName);
-        if(userRepository.getUserByName()==null){
-            throw new UsernameNotFoundException("User not authorized.");
-        }
-        GrantedAuthority authority = new SimpleGrantedAuthority()
-
-    }
-
-     */
-
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
         authenticationManagerBuilder
