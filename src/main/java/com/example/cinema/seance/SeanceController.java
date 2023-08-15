@@ -1,5 +1,7 @@
 package com.example.cinema.seance;
 
+import com.example.cinema.cinema.Cinema;
+import com.example.cinema.cinema.CinemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ import java.util.List;
 public class SeanceController {
     @Autowired
     SeanceRepository seanceRepository;
+
+    @Autowired
+    CinemaRepository cinemaRepository;
 
     @GetMapping("/getList")
     public List<Seance> getList(){
@@ -41,6 +46,8 @@ public class SeanceController {
     @PostMapping(path = "/add", consumes = "application/x-www-form-urlencoded")
     public RedirectView add(@RequestParam("title") String title, @RequestParam("description") String description){
         Seance newSeance = new Seance(title, description);
+        cinemaRepository.incrementSeanceStatistic();
+        cinemaRepository.incrementTicketStatistic();
         seanceRepository.save(newSeance);
         return new RedirectView("/seance/home/add");
     }

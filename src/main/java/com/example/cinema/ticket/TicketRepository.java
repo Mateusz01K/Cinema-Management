@@ -14,12 +14,18 @@ public class TicketRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Ticket> getAll(){
-        return jdbcTemplate.query("SELECT id, id_seance, price, date FROM ticket",
+        return jdbcTemplate.query("SELECT id, id_seance, id_user, price, date FROM ticket",
                 BeanPropertyRowMapper.newInstance(Ticket.class));
     }
 
+    public List<Ticket> getMyTicket(String userName){
+        return jdbcTemplate.query("SELECT id, id_seance, id_user, price, date FROM ticket " +
+                        "WHERE id_user=(SELECT id FROM account WHERE userName=?)",
+                BeanPropertyRowMapper.newInstance(Ticket.class), userName);
+    }
+
     public int buyTicket(Ticket ticket){
-        return jdbcTemplate.update("INSERT INTO task(id_seance, price, date) VALUES (?,?)",
-        ticket.getId_seance(),ticket.getPrice(), ticket.getDate());
+        return jdbcTemplate.update("INSERT INTO ticket(id_seance, id_user, price, date) VALUES (?,?,?,?)",
+        ticket.getId_seance(), ticket.getUser_id(),ticket.getPrice(), ticket.getDate());
     }
 }

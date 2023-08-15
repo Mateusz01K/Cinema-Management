@@ -18,7 +18,7 @@
                     <td>Title</td>
                     <td>Description</td>
                 </tr>
-                <tr th:each="ticket : ${seance}">
+                <tr th:each="ticket : ${ticket}">
                     <td th:text="${ticket.id}"></td>
                     <td th:text="${ticket.id_seance}"></td>
                     <td th:text="${ticket.price}"></td>
@@ -28,12 +28,12 @@
         </div>
         <div id="footer">
             <form class="Form" method="post" action="/ticket/buyTicket">
-                <label>ID_seance:</label>
+                <label>Id_seance:</label>
                 <input class="inputForm" type="text" name="id_seance"><br>
                 <label>Price:</label>
                 <input class="inputForm" type="number" name="price"><br>
                 <label>Date:</label>
-                <input class="inputForm" type="number" name="date"><br>
+                <input class="inputForm" type="date" name="date"><br>
                 <input class="inputAdd" type="submit" value="Buy">
             </form>
             <a href="/ticket/home" class="backButton">Back</a>

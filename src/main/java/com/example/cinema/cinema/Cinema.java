@@ -9,13 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cinema {
     private int id;
-    private int name;
-    private int seance;
-    private int ticket;
+    private int seanceCount;
+    private int ticketCount;
 
-    public Cinema(int name, int seance, int ticket){
-        this.name = name;
-        this.seance = seance;
-        this.ticket = ticket;
+    public Cinema(int seanceCount, int ticketCount) {
+        this.seanceCount = seanceCount;
+        this.ticketCount = ticketCount;
     }
 }

@@ -34,15 +34,13 @@
             <table id="seanceTable">
                 <tr class="seanceTr">
                     <td>ID</td>
-                    <td>Name</td>
                     <td>Seances</td>
                     <td>Tickets</td>
                 </tr>
                 <tr th:each="cinema : ${cinema}">
                     <td th:text="${cinema.id}"></td>
-                    <td th:text="${cinema.name}"></td>
-                    <td th:text="${cinema.seance}"></td>
-                    <td th:text="${cinema.ticket}"></td>
+                    <td th:text="${cinema.seanceCount}"></td>
+                    <td th:text="${cinema.ticketCount}"></td>
                 </tr>
             </table>
         </div>
@@ -50,7 +48,6 @@
             <a th:if="${#request.isUserInRole('USER')}" href="/cinema/add" id="addButton">Add</a>
             <a th:if="${userRole == 'ADMIN'}" href="/cinema/update" class="updateButton">Update</a>
             <a th:if="${#request.isUserInRole('ADMIN')}" href="/cinema/delete" class="deleteButton">Delete</a>
-            <a th:if="${#request.isUserInRole('ADMIN')}" href="/cinema/home" class="backButton">Back</a>
         </div>
     </div>
 </body>

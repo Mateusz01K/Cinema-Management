@@ -15,7 +15,15 @@ public class CinemaRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Cinema> getAll(){
-        return jdbcTemplate.query("SELECT id, name, seance, ticket FROM cinemaStatistic",
+        return jdbcTemplate.query("SELECT id, seanceCount, ticketCount FROM cinemaStatistic",
                 BeanPropertyRowMapper.newInstance(Cinema.class));
+    }
+
+    public void incrementSeanceStatistic(){
+        jdbcTemplate.update("UPDATE cinemaStatistic SET seanceCount = seanceCount + 1 WHERE id = 1");
+    }
+
+    public void incrementTicketStatistic(){
+        jdbcTemplate.update("UPDATE cinemaStatistic SET ticketCount = ticketCount + 1 WHERE id = 1");
     }
 }

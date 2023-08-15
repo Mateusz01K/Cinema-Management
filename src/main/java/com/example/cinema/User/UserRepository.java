@@ -12,12 +12,12 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     public int registerUser(User user){
-        return jdbcTemplate.update("INSERT INTO accont(userName, password, email, role) VALUES (?,?,?,?)",
+        return jdbcTemplate.update("INSERT INTO account(userName, password, email, role) VALUES (?,?,?,?)",
                 user.getUserName(),user.getPassword(),user.getEmail(),user.getRole());
     }
 
     public User getUserByName(String userName){
-        return jdbcTemplate.queryForObject("SELECT id, userName, password, email, role FROM accont WHERE userName=?",
+        return jdbcTemplate.queryForObject("SELECT id, userName, password, email, role FROM account WHERE userName=?",
                 BeanPropertyRowMapper.newInstance(User.class), userName);
     }
 }
