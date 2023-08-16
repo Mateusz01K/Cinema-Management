@@ -15,4 +15,6 @@ Dodawanie, Aktualizacja, Usuwanie danych seance.
 5. User.
 <br> Każdy użytkownik który się rejestruje ma odrazu przypisaną rolę 'USER'. Jest tylko jeden 'ADMIN'.
 6. Security.
-<br> Użytkownicy nie majądostępu do dodawania/aktualizowania/usuwania seansów. Może robić to tylko 'ADMIN'.
+<br> Użytkownicy nie mają dostępu do dodawania/aktualizowania/usuwania seansów. Może robić to tylko 'ADMIN'.
+7. MySQL.
+<br> Wszystkie dane są zawarte w bazie danych.
