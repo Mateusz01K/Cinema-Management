@@ -47,7 +47,6 @@ public class SeanceController {
     public RedirectView add(@RequestParam("title") String title, @RequestParam("description") String description){
         Seance newSeance = new Seance(title, description);
         cinemaRepository.incrementSeanceStatistic();
-        cinemaRepository.incrementTicketStatistic();
         seanceRepository.save(newSeance);
         return new RedirectView("/seance/home/add");
     }
@@ -84,10 +83,11 @@ public class SeanceController {
         return mav;
     }
 
-    //W RequestParam nie możan używać MOdelAndView
+
     @PreAuthorize("hasRole('ADMIN)")
     @PostMapping("/delete/{id}")
     public RedirectView delete(@RequestParam("id") int id){
+        cinemaRepository.decrementSeanceStatistic();
         seanceRepository.delete(id);
         return new RedirectView("/seance/home/delete");
     }

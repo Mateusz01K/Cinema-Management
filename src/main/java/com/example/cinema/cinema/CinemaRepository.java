@@ -26,4 +26,12 @@ public class CinemaRepository {
     public void incrementTicketStatistic(){
         jdbcTemplate.update("UPDATE cinemaStatistic SET ticketCount = ticketCount + 1 WHERE id = 1");
     }
+
+    public void decrementSeanceStatistic(){
+        jdbcTemplate.update("UPDATE cinemaStatistic SET seanceCount = seanceCount - 1 WHERE id = 1");
+    }
+
+    public void decrementTicketStatistic(){
+        jdbcTemplate.update("UPDATE cinemaStatistic SET ticketCount = ticketCount - 1 WHERE id = 1");
+    }
 }

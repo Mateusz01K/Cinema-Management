@@ -1,7 +1,9 @@
 package com.example.cinema.ticket;
 
 import com.example.cinema.User.UserRepository;
+import com.example.cinema.cinema.CinemaRepository;
 import com.example.cinema.seance.Seance;
+import com.example.cinema.seance.SeanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,12 @@ public class TicketController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CinemaRepository cinemaRepository;
+
+    @Autowired
+    SeanceRepository seanceRepository;
 
     @GetMapping("/getList")
     public List<Ticket> getList(){
@@ -42,7 +50,7 @@ public class TicketController {
     public ModelAndView getBuy(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/ticket/buy");
-        mav.addObject("ticket", ticketRepository.getAll());
+        mav.addObject("seance", seanceRepository.getAll());
         return mav;
     }
 
@@ -55,7 +63,31 @@ public class TicketController {
         String userName = userDetails.getUsername();
         int userId = userRepository.getUserByName(userName).getId();
         Ticket newTicket = new Ticket(id_seance, userId, price, date);
+        cinemaRepository.incrementTicketStatistic();
         ticketRepository.buyTicket(newTicket);
-        return new RedirectView("/home");
+        return new RedirectView("/ticket/home");
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/home/deleteTicket")
+    public ModelAndView getDelete(Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userName = userDetails.getUsername();
+        List<Ticket> myTicket = ticketRepository.getMyTicket(userName);
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("ticket/delete");
+        mav.addObject("ticket", myTicket);
+        return mav;
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/delete/{id}")
+    public RedirectView deleteTicket(@RequestParam("id") int id, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userName = userDetails.getUsername();
+        int userId = userRepository.getUserByName(userName).getId();
+        cinemaRepository.decrementTicketStatistic();
+        ticketRepository.delete(id, userId);
+        return new RedirectView("/ticket/home/deleteTicket");
     }
 }

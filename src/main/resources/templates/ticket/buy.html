@@ -14,15 +14,13 @@
             <table id="seanceTable">
                 <tr class="seanceTr">
                     <td>ID</td>
-                    <td>ID_seance</td>
                     <td>Title</td>
                     <td>Description</td>
                 </tr>
-                <tr th:each="ticket : ${ticket}">
-                    <td th:text="${ticket.id}"></td>
-                    <td th:text="${ticket.id_seance}"></td>
-                    <td th:text="${ticket.price}"></td>
-                    <td th:text="${ticket.date}"></td>
+                <tr th:each="seance : ${seance}">
+                    <td th:text="${seance.id}"></td>
+                    <td th:text="${seance.title}"></td>
+                    <td th:text="${seance.description}"></td>
                 </tr>
             </table>
         </div>

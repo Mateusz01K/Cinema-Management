@@ -28,4 +28,9 @@ public class TicketRepository {
         return jdbcTemplate.update("INSERT INTO ticket(id_seance, id_user, price, date) VALUES (?,?,?,?)",
         ticket.getId_seance(), ticket.getUser_id(),ticket.getPrice(), ticket.getDate());
     }
+
+    public void delete(int id, int id_user){
+        jdbcTemplate.update("DELETE FROM ticket WHERE id=? AND id_user=?", id, id_user);
+        jdbcTemplate.update("ALTER TABLE ticket AUTO_INCREMENT = 1");
+    }
 }
