@@ -7,9 +7,9 @@ Aplikacja do logowania, kupowania biletów, zarządzania seansami.
 Dodawanie, Aktualizacja, Usuwanie danych seance.
 <br><br>
 1. Cinema.
-<br> 
+<br> a
 3. Seance.
-<br>
+<br> a
 4. Tikcet.
 <br> Użytkownicy moga kupować bilety. Widzą bilety tylko kupione przez siebie. Mogą usuwać tylko swoje bilety.
 5. User.
