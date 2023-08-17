@@ -1,5 +1,6 @@
 package com.example.cinema.ticket;
 
+import com.example.cinema.seance.Seance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,11 @@ public class TicketRepository {
                 BeanPropertyRowMapper.newInstance(Ticket.class));
     }
 
+    public Ticket getTicketById(int id){
+        return jdbcTemplate.queryForObject("SELECT id, id_seance, id_user, price, date FROM ticket WHERE id=?",
+                BeanPropertyRowMapper.newInstance(Ticket.class), id);
+    }
+
     public List<Ticket> getMyTicket(String userName){
         return jdbcTemplate.query("SELECT id, id_seance, id_user, price, date FROM ticket " +
                         "WHERE id_user=(SELECT id FROM account WHERE userName=?)",
@@ -26,7 +32,7 @@ public class TicketRepository {
 
     public int buyTicket(Ticket ticket){
         return jdbcTemplate.update("INSERT INTO ticket(id_seance, id_user, price, date) VALUES (?,?,?,?)",
-        ticket.getId_seance(), ticket.getUser_id(),ticket.getPrice(), ticket.getDate());
+        ticket.getId_seance(), ticket.getId_user(),ticket.getPrice(), ticket.getDate());
     }
 
     public void delete(int id, int id_user){

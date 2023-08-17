@@ -86,8 +86,11 @@ public class TicketController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userName = userDetails.getUsername();
         int userId = userRepository.getUserByName(userName).getId();
-        cinemaRepository.decrementTicketStatistic();
-        ticketRepository.delete(id, userId);
+        Ticket ticketDelete = ticketRepository.getTicketById(id);
+        if(ticketDelete != null && ticketDelete.getId_user() == userId){
+            cinemaRepository.decrementTicketStatistic();
+            ticketRepository.delete(id, userId);
+        }
         return new RedirectView("/ticket/home/deleteTicket");
     }
 }

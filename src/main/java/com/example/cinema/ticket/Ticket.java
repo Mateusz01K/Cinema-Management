@@ -11,14 +11,14 @@ public class Ticket {
 
     private int id;
     private int id_seance;
-    private int user_id;
+    private int id_user;
     private float price;
     private String date;
 
 
-    public Ticket(int id_seance, int user_id, float price, String date) {
+    public Ticket(int id_seance, int id_user, float price, String date) {
         this.id_seance = id_seance;
-        this.user_id = user_id;
+        this.id_user = id_user;
         this.price = price;
         this.date = date;
     }
