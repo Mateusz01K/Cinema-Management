@@ -34,7 +34,7 @@ username: root<br>
 password: root<br>
 
 Dodajemy bazę która jest w projekcie<br>
-z folderu "db" dodajemy "cinemalibrary"
+z folderu "db"
 
 ### Tworzymy obraz Docker
 W terminalu wpisujemy polecenia:<br>
