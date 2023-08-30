@@ -6,17 +6,17 @@ Aplikacja do logowania, kupowania biletów, zarządzania seansami.
 <br><br>
 Dodawanie, Aktualizacja, Usuwanie danych seance.
 <br><br>
-1. Cinema.
+1. Cinema:
 <br> Wyświetla statystyki kina.
-3. Seance.
+3. Seance:
 <br> Tylko 'ADMIN' może dodawać nowe seanse.
-4. Tikcet.
+4. Tikcet:
 <br> Użytkownicy moga kupować bilety. Widzą bilety tylko kupione przez siebie. Mogą usuwać tylko swoje bilety.
-5. User.
+5. User:
 <br> Każdy użytkownik który się rejestruje ma odrazu przypisaną rolę 'USER'. Jest tylko jeden 'ADMIN'.
-6. Security.
+6. Security:
 <br> Użytkownicy nie mają dostępu do dodawania/aktualizowania/usuwania seansów. Może robić to tylko 'ADMIN'.
-7. MySQL.
+7. MySQL:
 <br> Wszystkie dane są zawarte w bazie danych.
 <br><br>
 Aplikacja jest w trakcie tworzenia, brakuje jeszcze sporo podstawowych funkcji, wyjątków, testów oraz wygląd strony jest podstawowy tylko do testowania aplikcacji.
