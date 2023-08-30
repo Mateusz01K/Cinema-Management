@@ -6,6 +6,8 @@ Aplikacja do logowania, kupowania biletów, zarządzania seansami.
 <br><br>
 Dodawanie, Aktualizacja, Usuwanie danych seance.
 <br><br>
+Aplikacja jest w trakcie tworzenia, brakuje jeszcze sporo podstawowych funkcji, wyjątków, testów oraz wygląd strony jest podstawowy tylko do testowania aplikcacji.
+<br><br>
 1. Cinema:
 <br> Wyświetla statystyki kina.
 3. Seance:
@@ -19,7 +21,6 @@ Dodawanie, Aktualizacja, Usuwanie danych seance.
 7. MySQL:
 <br> Wszystkie dane są zawarte w bazie danych.
 <br><br>
-Aplikacja jest w trakcie tworzenia, brakuje jeszcze sporo podstawowych funkcji, wyjątków, testów oraz wygląd strony jest podstawowy tylko do testowania aplikcacji.
 
 ## Jak uruchomić projekt
 
